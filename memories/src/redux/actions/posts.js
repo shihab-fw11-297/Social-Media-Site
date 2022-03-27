@@ -3,7 +3,7 @@
 //front of it and then instead of returning the action we have to dispatch it 
 
 import * as api from '../../api/index.js';
-import { FETCH_ALL,CREATE } from '../constants/actionTypes';
+import { FETCH_ALL,CREATE,UPDATE,DELETE } from '../constants/actionTypes';
 
 
  //error function which then returns another error function with a dispatch right there that comes from redux thunk
@@ -28,3 +28,24 @@ export const getPosts = () => async (dispatch) => {
     }
   };
   
+
+  export const updatePost = (id, post) => async (dispatch) => {
+    try {
+      const { data } = await api.updatePost(id, post);
+  
+      dispatch({ type: UPDATE, payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+
+  export const deletePost = (id) => async (dispatch) => {
+    try {
+      await api.deletePost(id);
+  
+      dispatch({ type: DELETE, payload: id });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
