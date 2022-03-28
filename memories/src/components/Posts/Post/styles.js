@@ -39,7 +39,7 @@ export default makeStyles({
   details: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '20px',
+    margin: ' 5px 15px',
   },
   title: {
     padding: '0 16px',
@@ -49,4 +49,12 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  message:{
+    height:'100px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    '-webkit-line-clamp': 5,
+    '-webkit-box-orient': 'vertical',
+  }
 });
