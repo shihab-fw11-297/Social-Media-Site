@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Input from './Input';
 import Icon from './icon';
+import { signin, signup } from '../../redux/actions/auth';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -21,6 +22,14 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        //we pass the form data so well we can have it in our database of course but we pass the history object so that we can navigate once something
+
+        if (isSignup) {
+            dispatch(signup(form, history));
+          } else {
+            dispatch(signin(form, history));
+          }
     };
 
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
