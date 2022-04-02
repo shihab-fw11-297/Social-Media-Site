@@ -8,6 +8,8 @@ import { useHistory } from 'react-router-dom';
 import Input from './Input';
 import Icon from './icon';
 import { signin, signup } from '../../redux/actions/auth';
+import memories from '../../images/memories.png';
+import memoriesText from '../../images/memoriesText.png';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -27,9 +29,9 @@ const Auth = () => {
 
         if (isSignup) {
             dispatch(signup(form, history));
-          } else {
+        } else {
             dispatch(signin(form, history));
-          }
+        }
     };
 
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -43,20 +45,28 @@ const Auth = () => {
     const googleSuccess = async (res) => {
         const result = res?.profileObj;     //optional chaining operator error undefind
         const token = res?.tokenId;
-       
+
         try {
             dispatch({ type: 'AUTH', data: { result, token } });
-      
-            history.push('/');
-          } catch (error) {
-            console.log(error);
-          }
 
-      };
+            history.push('/');
+        } catch (error) {
+            console.log(error);
+        }
+
+    };
 
     const googleError = () => console.log('Google Sign In was unsuccessful. Try again later');
     return (
-        <Container component="main" maxWidth="xs">
+        <Container className={classes.container} component="main" maxWidth="xs">
+            <Paper className={classes.paper1}>
+                <div className={classes.container} >
+                    <img className={classes.image} src={memoriesText} alt="icon" height="45px" />
+                    <img className={classes.image1} src={memories} alt="icon" height="60" />
+                </div>
+                <Typography className={classes.headings} component="h1" variant="h4">Memories helps you connect and share with the people in your life.</Typography>
+            </Paper>
+
             <Paper className={classes.paper} elevation={6}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />

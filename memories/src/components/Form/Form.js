@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const Form = ({ currentId, setCurrentId }) => {
     const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
-    const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
+    const post = useSelector((state) => (currentId ? state.posts.posts.find((message) => message._id === currentId) : null));
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();

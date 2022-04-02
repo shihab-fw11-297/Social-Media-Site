@@ -4,7 +4,7 @@
 //then we want to do some logic here more specifically we want to return either
 //action or we want to return the state changed by the action
 
-import { FETCH_ALL, CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,FETCH_POST} from '../constants/actionTypes';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 
@@ -28,6 +28,9 @@ export default (state = { isLoading: true, posts: [] }, action) => {
         case FETCH_BY_SEARCH:
             return { ...state, posts: action.payload.data };
 
+        case FETCH_POST:
+            return { ...state, post: action.payload.post };
+            
         case CREATE:
             return { ...state, posts: [...state.posts, action.payload] };
 
