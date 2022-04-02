@@ -20,6 +20,10 @@ app.use(cors());
 app.use('/posts', postRoutes);
 app.use("/user", userRouter);
 
+app.get('/', (req, res) => {
+	res.send('MEMORIES API IS RUNNING');
+});
+
 //MongoDb URL and Port number
 // const CONNECTION_URL = 'mongodb+srv://shihab123:shihab123@memories.5pdr4.mongodb.net/MERN_MEMORIES?retryWrites=true&w=majority';
 const PORT = process.env.PORT|| 5020;

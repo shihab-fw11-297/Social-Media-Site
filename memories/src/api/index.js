@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5020' });
+const API = axios.create({ baseURL: 'https://memories-apis.herokuapp.com' });
 
 //api dot interceptors and dot request this is going to be a function that's going to happen on each one of our requests so in here
 // we can say dot use and then you provide a callback function that callback function gets a request as the first parameter so again this is going to happen before
@@ -22,6 +22,7 @@ export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updated
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
+export const comment = (value, id) =>	API.post(`/posts/${id}/commentPost`, { value });
 
 export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);

@@ -6,3 +6,8 @@ body {
   /* font-family: 'Noto Sans JP' !important; */
   font-family: 'Heebo', sans-serif !important;
 }
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

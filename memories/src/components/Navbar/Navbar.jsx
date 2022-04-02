@@ -16,17 +16,18 @@ const Navbar = () => {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
- useEffect(() => {
-    const token = user?.token;
+    useEffect(() => {
+        const token = user?.token;
 
-    if (token) {
-      const decodedToken = decode(token);
+        if (token) {
+            const decodedToken = decode(token);
 
-      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-    }
+            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
 
-    setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location]);
+        setUser(JSON.parse(localStorage.getItem('profile')));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location]);
 
     const logout = () => {
         dispatch({ type: 'LOGOUT' });
@@ -52,7 +53,9 @@ const Navbar = () => {
                         <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>
                 ) : (
-                    <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                    <Link className={classes.link} to="/auth">
+                        <Button  variant="contained" color="primary">Sign In</Button>
+                    </Link>
                 )}
             </Toolbar>
         </AppBar>

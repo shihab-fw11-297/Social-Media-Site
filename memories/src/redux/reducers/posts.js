@@ -4,7 +4,7 @@
 //then we want to do some logic here more specifically we want to return either
 //action or we want to return the state changed by the action
 
-import { FETCH_ALL, CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,FETCH_POST} from '../constants/actionTypes';
+import { FETCH_ALL, CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,FETCH_POST,COMMENT} from '../constants/actionTypes';
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 
@@ -46,8 +46,20 @@ export default (state = { isLoading: true, posts: [] }, action) => {
             //so first we map over the posts we check what is the one post that changed or what is the one
             //post that was liked return the post with a change or if the post is not liked then just return the post
             return { ...state, posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)) };
-   
-        default:
+
+        case COMMENT:
+            return {
+               
+                ...state,
+                //change the post that just received only one comments..
+                posts: state.posts.map((post) => {
+                    if (post._id === action.payload._id) {
+                        return action.payload;
+                    }
+                    return post;     //return all other post normally
+                }),
+            };
+            default:
             return state;
     }
 }

@@ -3,7 +3,7 @@
 //front of it and then instead of returning the action we have to dispatch it 
 
 import * as api from '../../api/index.js';
-import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,END_LOADING ,START_LOADING,FETCH_POST} from '../constants/actionTypes';
+import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,END_LOADING ,START_LOADING,FETCH_POST,COMMENT} from '../constants/actionTypes';
 
 
 //error function which then returns another error function with a dispatch right there that comes from redux thunk
@@ -91,3 +91,16 @@ import { FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,END_LOADING ,START_
     }
   };
   
+
+  export const commentPost = (value, id) => async (dispatch) => {
+    try {
+      const { data } = await api.comment(value, id);
+  
+      console.log(data);
+      dispatch({ type: COMMENT, payload: data });
+  
+       return data.comments;
+    } catch (error) {
+      console.log(error);
+    }
+  };

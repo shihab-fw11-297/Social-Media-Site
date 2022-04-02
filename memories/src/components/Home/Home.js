@@ -4,8 +4,8 @@ import Form from '../Form/Form';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getPosts,getPostsBySearch  } from '../../redux/actions/posts';
+import { useState } from 'react';
+import { getPostsBySearch  } from '../../redux/actions/posts';
 import Pagination from '../Pagination/Pagination';
 import ChipInput from 'material-ui-chip-input';
 
